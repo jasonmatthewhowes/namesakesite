@@ -128,14 +128,6 @@ nav.site-nav a.active::after { right: 0; }
   border-bottom: 1px solid var(--line);
 }
 
-.hero-lockup {
-  display: block;
-  width: 100%;
-  max-width: 380px;
-  height: auto;
-  margin-bottom: 30px;
-}
-
 .hero .kicker {
   display: inline-block;
   text-transform: uppercase;
@@ -159,9 +151,6 @@ nav.site-nav a.active::after { right: 0; }
 /* ---- hero load-in animation (pure CSS, no JS required) ---- */
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero-lockup {
-    animation: hero-up 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) both;
-  }
   .hero .kicker {
     animation: hero-up 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) both 0.08s,
                kicker-shimmer 7s ease-in-out infinite alternate 0.8s;
@@ -559,7 +548,6 @@ footer a:hover { color: var(--accent); }
 /* ---- respect reduced-motion everywhere ---- */
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-lockup,
   .hero .kicker,
   .hero h1,
   .hero p.lede,

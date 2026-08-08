@@ -1,0 +1,253 @@
+/* ---------------------------------------------
+   jasonmatthewhowes.com — base styles
+   Dark, moody, editorial. EdTech x travel-doc.
+--------------------------------------------- */
+
+:root {
+  --bg: #121110;
+  --bg-alt: #1a1815;
+  --ink: #ece4d6;
+  --ink-dim: #a89f8f;
+  --line: #33302a;
+  --accent: #d3782c;
+  --accent-dim: #8a5322;
+  --max-w: 880px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 0.4em;
+  color: #fff;
+}
+
+h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1em; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+a:hover { border-color: var(--accent); }
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- header / nav ---- */
+
+header.site-header {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-row {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+  border: none;
+}
+.brand:hover { color: var(--accent); border: none; }
+
+nav.site-nav a {
+  color: var(--ink-dim);
+  margin-left: 22px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: none;
+}
+nav.site-nav a:hover,
+nav.site-nav a.active { color: var(--accent); }
+
+/* ---- hero ---- */
+
+.hero {
+  padding: 90px 0 70px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero .kicker {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.hero p.lede {
+  font-size: 1.2rem;
+  color: var(--ink-dim);
+  max-width: 620px;
+}
+
+/* ---- sections ---- */
+
+section.block {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--line);
+}
+section.block:last-of-type { border-bottom: none; }
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+  margin-bottom: 22px;
+}
+
+/* ---- link-out cards ---- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: block;
+  border: 1px solid var(--line);
+  background: var(--bg-alt);
+  padding: 22px;
+  border-radius: 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.card:hover {
+  border-color: var(--accent-dim);
+}
+
+.card h3 {
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.card p {
+  color: var(--ink-dim);
+  font-size: 0.92rem;
+  margin-bottom: 0;
+}
+
+.card .go {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* ---- buttons ---- */
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--accent);
+  color: var(--accent) !important;
+  padding: 12px 24px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom-width: 1px;
+}
+.btn:hover {
+  background: var(--accent);
+  color: #121110 !important;
+}
+
+/* ---- placeholder notice ---- */
+
+.placeholder {
+  border-left: 3px solid var(--accent-dim);
+  background: var(--bg-alt);
+  padding: 14px 18px;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  margin-bottom: 28px;
+}
+.placeholder strong { color: var(--ink); }
+
+/* ---- footer ---- */
+
+footer {
+  padding: 40px 0 60px;
+  color: var(--ink-dim);
+  font-size: 0.85rem;
+}
+
+footer a { color: var(--ink-dim); }
+footer a:hover { color: var(--accent); }
+
+/* ---- misc ---- */
+
+.quick-facts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.quick-facts li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 18px;
+}
+.quick-facts li:last-child { border-bottom: none; }
+.quick-facts .k {
+  color: var(--ink-dim);
+  min-width: 120px;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  padding-top: 3px;
+}
+
+.avatar-slot {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 1 / 1;
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-dim);
+  font-size: 0.8rem;
+  text-align: center;
+  margin-bottom: 30px;
+}

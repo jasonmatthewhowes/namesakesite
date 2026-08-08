@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Jason Matthew Howes</title>
+<meta name="description" content="Get in touch with Jason Matthew Howes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -26,29 +27,50 @@
 <section class="hero" style="padding-bottom:40px;">
   <div class="wrap">
     <span class="kicker">Contact</span>
-    <h1>Say hi.</h1>
+    <h1>Let's Talk</h1>
+    <p class="lede">I like difficult problems.</p>
+    <p class="lede">Particularly the ones that live awkwardly between technology, people, data, and organizations.</p>
     <p class="lede">
-      [PLACEHOLDER — one line on what kind of messages you want: work inquiries,
-      speaking, just saying hello. Keep it short.]
+      If you're building something interesting, trying to untangle something complicated,
+      exploring what AI means for your organization, or staring at a process everyone
+      hates but nobody knows how to fix, I'd be glad to hear about it.
+    </p>
+    <p class="lede" style="font-style: italic; color: var(--ink);">
+      I can't promise the answer is AI. Frankly, that's part of the appeal.
     </p>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <p><a class="btn" href="mailto:jasonmatthewhowes@gmail.com">jasonmatthewhowes@gmail.com</a></p>
 
-    <div class="section-label" style="margin-top:50px;">Elsewhere</div>
-    <ul class="quick-facts">
-      <li><span class="k">LinkedIn</span><a href="#" target="_blank" rel="noopener">[link]</a></li>
-      <li><span class="k">X / Twitter</span><a href="#" target="_blank" rel="noopener">[link]</a></li>
-      <li><span class="k">Substack</span><a href="#" target="_blank" rel="noopener">[link]</a></li>
-    </ul>
+    <!--
+      NOTE: this form posts to Formspree (https://formspree.io). Sign up for a free
+      account, create a form, and replace YOUR_FORM_ID below with the ID they give you.
+      Until you do that, the form won't actually send anywhere — use the mailto link
+      beneath it in the meantime.
+    -->
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="form-field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-field">
+        <label for="message">What are you working on?</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send</button>
+    </form>
 
     <div class="placeholder" style="margin-top:30px;">
-      <strong>Note:</strong> replace the placeholder links above with your real profile URLs.
-      This is a static site with no backend, so contact goes through email or your social
-      links — no form needed unless you want to add one later (e.g. via Formspree).
+      <strong>Note:</strong> replace <code>YOUR_FORM_ID</code> in the form's
+      <code>action</code> attribute with a real Formspree (or similar) form ID so
+      submissions actually reach you. Until then, reach me directly at
+      <a href="mailto:jasonmatthewhowes@gmail.com">jasonmatthewhowes@gmail.com</a>.
     </div>
   </div>
 </section>

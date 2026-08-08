@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.className += ' js';</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Jason Matthew Howes</title>
@@ -21,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
@@ -60,7 +61,7 @@
     <div data-fs-success class="fs-message fs-success"></div>
     <div data-fs-error class="fs-message fs-error"></div>
 
-    <form id="contact-form" action="https://formspree.io/f/mdenalyl" method="POST">
+    <form id="contact-form" class="reveal-scroll" action="https://formspree.io/f/mdenalyl" method="POST">
       <div class="form-field">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" data-fs-field required>
@@ -81,11 +82,11 @@
 
     <p class="media-caption" style="text-align:left; margin-top:14px;">
       Prefer email? Reach me directly at
-      <a href="mailto:jasonmatthewhowes@gmail.com">jasonmatthewhowes@gmail.com</a>.
+      <a href="mailto:jason@jasonmatthewhowes.com">jason@jasonmatthewhowes.com</a>.
     </p>
 
     <div class="section-label" style="margin-top:50px;">Elsewhere</div>
-    <ul class="quick-facts">
+    <ul class="quick-facts reveal-scroll">
       <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/jasonmatthewhowes/" target="_blank" rel="noopener">linkedin.com/in/jasonmatthewhowes</a></li>
     </ul>
   </div>
@@ -104,5 +105,24 @@
   formspree('initForm', { formElement: '#contact-form', formId: 'mdenalyl' });
 </script>
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+<script>
+(function () {
+  var els = document.querySelectorAll('.reveal-scroll');
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>

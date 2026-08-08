@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.className += ' js';</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Work — Jason Matthew Howes</title>
@@ -21,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
@@ -50,7 +51,7 @@
   <div class="wrap">
     <div class="section-label category-heading">Artificial Intelligence</div>
 
-    <div class="project">
+    <div class="project reveal-scroll">
       <h3>AI Product Development &amp; Prototyping</h3>
       <p class="lead-line">Exploring what becomes possible when software suddenly gets cheaper to create.</p>
       <p>
@@ -73,7 +74,7 @@
       </div>
     </div>
 
-    <div class="project">
+    <div class="project reveal-scroll">
       <h3>AIReflective</h3>
 
       <div class="media-panel">
@@ -108,7 +109,7 @@
   <div class="wrap">
     <div class="section-label category-heading">Business Intelligence &amp; Data</div>
 
-    <div class="project">
+    <div class="project reveal-scroll">
       <h3>Tennessee Department of Health &mdash; Business Intelligence</h3>
       <p class="lead-line">Turning organizational data into organizational awareness.</p>
       <p>
@@ -142,7 +143,7 @@
   <div class="wrap">
     <div class="section-label category-heading">Strategy &amp; Operations</div>
 
-    <div class="project">
+    <div class="project reveal-scroll">
       <h3>Organizational Strategy &amp; Operational Improvement</h3>
       <p class="lead-line">Strategy eventually has to survive contact with Monday morning.</p>
       <p>
@@ -171,7 +172,7 @@
   <div class="wrap">
     <div class="section-label category-heading">Product &amp; Education Technology</div>
 
-    <div class="project">
+    <div class="project reveal-scroll">
       <h3>Education Technology &amp; AI</h3>
       <p class="lead-line">Building for environments where reality gets a vote.</p>
       <p>
@@ -191,7 +192,7 @@
       <p>The demo doesn't get a vote. Reality does.</p>
     </div>
 
-    <div class="project">
+    <div class="project reveal-scroll">
       <h3>District Usage Analytics</h3>
       <p class="lead-line">Data is only useful if someone can figure out what it's trying to tell them.</p>
       <p>
@@ -208,7 +209,7 @@
       </div>
     </div>
 
-    <div class="project">
+    <div class="project reveal-scroll">
       <h3>AI Scope &amp; Sequence Tools</h3>
       <p class="lead-line">Making the blank page less expensive.</p>
       <p>
@@ -235,7 +236,7 @@
   <div class="wrap">
     <div class="section-label category-heading">Consulting</div>
 
-    <div class="project">
+    <div class="project reveal-scroll">
       <h3>Private Consulting</h3>
       <p class="lead-line">Different organizations. Familiar problems.</p>
       <p>
@@ -260,5 +261,24 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+(function () {
+  var els = document.querySelectorAll('.reveal-scroll');
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>

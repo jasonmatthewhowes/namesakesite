@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.className += ' js';</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jason Matthew Howes</title>
@@ -21,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
@@ -62,7 +63,7 @@
 </section>
 
 <section class="block">
-  <div class="wrap">
+  <div class="wrap reveal-scroll">
     <div class="section-label">The Through Line</div>
     <h2>My career makes more sense from a distance.</h2>
     <p>
@@ -87,7 +88,7 @@
   <div class="wrap">
     <div class="section-label">What I Work On</div>
 
-    <div class="topic-block">
+    <div class="topic-block reveal-scroll">
       <h3>Artificial Intelligence</h3>
       <p class="lead-line">AI has radically changed what a small team&mdash;or sometimes one sufficiently caffeinated person&mdash;can build.</p>
       <p>
@@ -102,7 +103,7 @@
       <p>Those are very different questions.</p>
     </div>
 
-    <div class="topic-block">
+    <div class="topic-block reveal-scroll">
       <h3>Business Intelligence &amp; Data</h3>
       <p class="lead-line">Organizations generally aren't suffering from a shortage of data. They're drowning in it.</p>
       <p>
@@ -117,7 +118,7 @@
       </p>
     </div>
 
-    <div class="topic-block">
+    <div class="topic-block reveal-scroll">
       <h3>Strategy &amp; Operations</h3>
       <p class="lead-line">Some problems don't need software. They need someone willing to map the mess.</p>
       <p>
@@ -133,7 +134,7 @@
       <p>I like that part.</p>
     </div>
 
-    <div class="topic-block">
+    <div class="topic-block reveal-scroll">
       <h3>Product &amp; Education Technology</h3>
       <p class="lead-line">Education technology is an unusually good laboratory for product development.</p>
       <p>
@@ -148,7 +149,7 @@
       <p>The classroom doesn't care about your roadmap. It cares whether the thing works.</p>
     </div>
 
-    <div class="topic-block">
+    <div class="topic-block reveal-scroll">
       <h3>Consulting &amp; Problem Solving</h3>
       <p class="lead-line">Consulting taught me something I've carried into almost everything I've done since:</p>
       <p>The problem someone brings you is rarely the entire problem.</p>
@@ -159,7 +160,7 @@
 </section>
 
 <section class="block">
-  <div class="wrap">
+  <div class="wrap reveal-scroll">
     <div class="section-label">Get in touch</div>
     <h2>Got a project, a question, or a restaurant recommendation?</h2>
     <p><a class="btn" href="contact.html">Contact me</a></p>
@@ -173,5 +174,24 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+(function () {
+  var els = document.querySelectorAll('.reveal-scroll');
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>

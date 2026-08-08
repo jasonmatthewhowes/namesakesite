@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.className += ' js';</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Jason Matthew Howes</title>
@@ -21,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
@@ -46,7 +47,7 @@
 
 <section class="block">
   <div class="wrap">
-    <img class="avatar-photo" src="assets/web/headshot.jpg" alt="Portrait of Jason Matthew Howes">
+    <img class="avatar-photo reveal-scroll" src="assets/web/headshot.jpg" alt="Portrait of Jason Matthew Howes">
 
     <p>I have one of those careers that requires a slightly longer explanation at parties.</p>
     <p>
@@ -57,7 +58,7 @@
     <p>The job titles changed. The work, strangely enough, didn't change that much.</p>
     <p>I tend to end up somewhere between a complicated problem and the people trying to solve it.</p>
 
-    <div class="topic-block">
+    <div class="topic-block reveal-scroll">
       <h2>The Operator</h2>
       <p>I'm fascinated by how organizations actually work.</p>
       <p>Not how the org chart says they work. How they actually work.</p>
@@ -78,7 +79,7 @@
       </p>
     </div>
 
-    <div class="topic-block">
+    <div class="topic-block reveal-scroll">
       <h2>The Technologist</h2>
       <p>I came to technology through problems rather than technology itself.</p>
       <p>That's probably why I still approach it differently.</p>
@@ -99,7 +100,7 @@
       </p>
     </div>
 
-    <div class="topic-block">
+    <div class="topic-block reveal-scroll">
       <h2>The Builder</h2>
       <p>I like making things.</p>
       <p>Software. Systems. Teams. Strategies. Dashboards. Products. Occasionally unnecessarily elaborate spreadsheets.</p>
@@ -112,7 +113,7 @@
       <p>When prototypes become cheap, curiosity becomes a development strategy.</p>
     </div>
 
-    <div class="topic-block">
+    <div class="topic-block reveal-scroll">
       <h2>The Background</h2>
       <p>Before much of this, I was a professional musician.</p>
       <p>Which sounds unrelated until you've spent enough time building things.</p>
@@ -139,5 +140,24 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+(function () {
+  var els = document.querySelectorAll('.reveal-scroll');
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>

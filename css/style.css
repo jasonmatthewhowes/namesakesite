@@ -91,18 +91,35 @@ header.site-header {
   height: 26px;
   width: auto;
   display: block;
+  transition: transform 0.25s ease;
 }
+.brand:hover .brand-mark { transform: scale(1.06); }
 
 nav.site-nav a {
+  position: relative;
   color: var(--ink-dim);
   margin-left: 22px;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border: none;
+  padding-bottom: 3px;
+  transition: color 0.15s ease;
+}
+nav.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -1px;
+  height: 1px;
+  background: var(--accent);
+  transition: right 0.25s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 nav.site-nav a:hover,
 nav.site-nav a.active { color: var(--accent); }
+nav.site-nav a:hover::after,
+nav.site-nav a.active::after { right: 0; }
 
 /* ---- hero ---- */
 
@@ -125,7 +142,8 @@ nav.site-nav a.active { color: var(--accent); }
   letter-spacing: 0.14em;
   font-size: 0.75rem;
   color: var(--accent);
-  background-image: linear-gradient(90deg, var(--accent-2), var(--accent));
+  background-image: linear-gradient(90deg, var(--accent-2), var(--accent), var(--accent-2));
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -136,6 +154,41 @@ nav.site-nav a.active { color: var(--accent); }
   font-size: 1.2rem;
   color: var(--ink-dim);
   max-width: 620px;
+}
+
+/* ---- hero load-in animation (pure CSS, no JS required) ---- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-lockup {
+    animation: hero-up 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  }
+  .hero .kicker {
+    animation: hero-up 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) both 0.08s,
+               kicker-shimmer 7s ease-in-out infinite alternate 0.8s;
+  }
+  .hero h1 {
+    animation: hero-up 0.8s cubic-bezier(0.2, 0.6, 0.2, 1) both 0.16s;
+  }
+  .hero p.lede {
+    animation: hero-up 0.8s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  }
+  .hero p.lede:nth-of-type(1) { animation-delay: 0.24s; }
+  .hero p.lede:nth-of-type(2) { animation-delay: 0.30s; }
+  .hero p.lede:nth-of-type(3) { animation-delay: 0.36s; }
+  .hero p.lede:nth-of-type(4) { animation-delay: 0.42s; }
+  .hero .btn-row {
+    animation: hero-up 0.8s cubic-bezier(0.2, 0.6, 0.2, 1) both 0.46s;
+  }
+}
+
+@keyframes hero-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes kicker-shimmer {
+  from { background-position: 0% center; }
+  to { background-position: 100% center; }
 }
 
 /* ---- sections ---- */
@@ -169,10 +222,12 @@ section.block:last-of-type { border-bottom: none; }
   padding: 22px;
   border-radius: 4px;
   border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .card:hover {
   border-color: var(--accent-dim);
+  transform: translateY(-3px);
 }
 
 .card h3 {
@@ -207,10 +262,13 @@ section.block:last-of-type { border-bottom: none; }
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border-bottom-width: 1px;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 .btn:hover {
   background: var(--accent);
   color: var(--bg) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px rgba(202, 166, 252, 0.45);
 }
 
 /* ---- placeholder notice ---- */
@@ -294,6 +352,12 @@ footer a:hover { color: var(--accent); }
   max-width: 420px;
   margin-bottom: 22px;
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.media-panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px -12px rgba(0, 0, 0, 0.5);
 }
 
 .media-panel img,
@@ -474,4 +538,49 @@ footer a:hover { color: var(--accent); }
   border-left: 3px solid #e07a7a;
   background: var(--bg-alt);
   color: var(--ink);
+}
+
+/* ---- scroll-reveal (progressive enhancement) ----
+   .js is added by an inline script in <head>. Without it (JS disabled/blocked),
+   .reveal-scroll elements render normally with no hidden state. ---- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal-scroll {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s cubic-bezier(0.2, 0.6, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+  .js .reveal-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- respect reduced-motion everywhere ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-lockup,
+  .hero .kicker,
+  .hero h1,
+  .hero p.lede,
+  .hero .btn-row,
+  .js .reveal-scroll {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    background-position: 0% center !important;
+  }
+  .brand-mark,
+  .btn,
+  .card,
+  .media-panel {
+    transition: none !important;
+  }
+  .btn:hover,
+  .card:hover,
+  .media-panel:hover,
+  .brand:hover .brand-mark {
+    transform: none !important;
+  }
 }

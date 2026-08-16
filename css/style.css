@@ -17,16 +17,46 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: transparent;
   color: var(--ink);
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+/* ---- ambient background art ----
+   Fixed painting layer sitting behind all content. Very low opacity —
+   present as texture, never as competition for the type. ---- */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("../assets/web/bluerose-bg.webp");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.10;
+  /* the painting is dark-on-dark; lift it so the bloom is legible at low opacity */
+  filter: brightness(1.5) saturate(1.4);
+  /* fade the edges so the composition drifts off rather than framing the page */
+  -webkit-mask-image: radial-gradient(ellipse 120% 100% at 50% 42%, #000 35%, rgba(0, 0, 0, 0.35) 75%, transparent 100%);
+  mask-image: radial-gradient(ellipse 120% 100% at 50% 42%, #000 35%, rgba(0, 0, 0, 0.35) 75%, transparent 100%);
+}
+
+/* narrow screens crop hard into the image; ease off so it reads as texture */
+@media (max-width: 700px) {
+  body::before { opacity: 0.08; }
 }
 
 h1, h2, h3 {
